@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 
+/**
+ * The CHIP-8 instruction data structure.
+ */
 typedef struct CHIPC_Instruction {
     union {
         uint16_t full;
@@ -12,7 +15,16 @@ typedef struct CHIPC_Instruction {
     };
 } CHIPC_Instruction;
 
+/**
+ * Create a new CHIPC_Instruction from the provided value.
+ */
 CHIPC_Instruction CHIPC_CreateInstruction(uint16_t value);
+
+/**
+ * Create a CHIPC_Instruction from the provided bytes.
+ * @param high The high byte.
+ * @param low The low byte.
+ */
 CHIPC_Instruction CHIPC_CreateInstructionFromPair(uint8_t high, uint8_t low);
 
 #endif //CHIPC_INSTRUCTION_H
