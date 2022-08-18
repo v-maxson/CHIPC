@@ -22,7 +22,6 @@ CHIPC_Cpu CHIPC_CreateCpu(void);
 
 /**
  * Destroys the provided CHIPC_Cpu.
- * Currently unused, present for forwards compatibility.
  * @param cpu The CHIPC_Cpu to destroy.
  */
 void CHIPC_DestroyCpu(CHIPC_Cpu* cpu);
