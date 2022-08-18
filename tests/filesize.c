@@ -1,4 +1,4 @@
-#include "chipc_utility.h"
+#include "utility/utility.h"
 #include <stdio.h>
 
 int main(void) {
