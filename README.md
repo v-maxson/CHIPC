@@ -1,5 +1,5 @@
 # CHIPC
-A simple CHIP-8 interpreter made with C.
+A simple CHIP-8 interpreter made with C99.
 
 ---
 
