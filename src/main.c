@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", NFD_GetError(), NULL);
     }
 
-    SDL_Quit();
     NFD_Quit();
+    SDL_Quit();
     return 0;
 }
