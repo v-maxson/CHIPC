@@ -1,5 +1,4 @@
 #include "stack.h"
-
 #include <stdlib.h>
 
 #define CHIPC_DEFAULT 0
