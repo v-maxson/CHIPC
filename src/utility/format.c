@@ -9,12 +9,12 @@ const char* CHIPC_FormatString(const char* fmt, ...) {
     va_list varargs;
     va_start(varargs, fmt);
 
-    uint64_t amount_needed = snprintf(NULL, 0, fmt, varargs);
+    uint64_t amount_needed = vsnprintf(NULL, 0, fmt, varargs);
     const char* str = malloc(sizeof *str * (amount_needed + 1));
     if (!str)
         return NULL;
 
-    uint64_t amount_written = snprintf(str, amount_needed, fmt, varargs);
+    uint64_t amount_written = vsnprintf(str, amount_needed + 1, fmt, varargs);
 
     if (amount_written > amount_needed)
         return NULL;
