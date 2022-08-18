@@ -2,3 +2,6 @@
 	path = dependencies/SDL2
 	url = https://github.com/libsdl-org/SDL
 	branch = 2.0.22
+[submodule "dependencies/NFDE"]
+	path = dependencies/NFDE
+	url = https://github.com/btzy/nativefiledialog-extended
