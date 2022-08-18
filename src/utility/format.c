@@ -1,0 +1,30 @@
+#include "utility.h"
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+// FIXME Multiple calls to snprintf might not be optimal.
+const char* CHIPC_FormatString(const char* fmt, ...) {
+    va_list varargs;
+    va_start(varargs, fmt);
+
+    uint64_t amount_needed = snprintf(NULL, 0, fmt, varargs);
+    const char* str = malloc(sizeof *str * (amount_needed + 1));
+    if (!str)
+        return NULL;
+
+    uint64_t amount_written = snprintf(str, amount_needed, fmt, varargs);
+
+    if (amount_written > amount_needed)
+        return NULL;
+
+    va_end(varargs);
+    return str;
+}
+
+// FIXME Error-prone if used on a str that isn't allocated with malloc.
+void CHIPC_DestroyFormattedString(const char* str) {
+    if (str)
+        free(str);
+}
