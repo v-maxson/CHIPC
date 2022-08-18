@@ -23,7 +23,7 @@ const char* CHIPC_CreateFormattedString(const char* fmt, ...) {
     return str;
 }
 
-// FIXME Error-prone if used on a str that isn't allocated with malloc.
+// FIXME Error-prone if used on a string that isn't allocated with malloc.
 void CHIPC_DestroyFormattedString(const char* str) {
     if (str)
         free(str);
