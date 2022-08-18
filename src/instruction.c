@@ -1,7 +1,5 @@
 #include "instruction.h"
 
-#include <stdio.h>
-
 CHIPC_Instruction CHIPC_CreateInstruction(uint16_t value) {
     return (CHIPC_Instruction) { .full = value };
 }
