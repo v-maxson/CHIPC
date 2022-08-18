@@ -13,4 +13,6 @@ CHIPC_Cpu CHIPC_CreateCpu(void) {
     return cpu;
 }
 
-void CHIPC_DestroyCpu(CHIPC_Cpu *cpu) {}
+void CHIPC_DestroyCpu(CHIPC_Cpu *cpu) {
+    CHIPC_DestroyStack(&cpu->stack);
+}
