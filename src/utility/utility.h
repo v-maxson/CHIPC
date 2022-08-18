@@ -17,7 +17,7 @@ uint64_t CHIPC_GetFileSize(const char* file_path, bool* result);
  * @param fmt The format string.
  * @return The formatted string, or NULL if allocation failed. Warning: This string must be destroyed with CHIPC_DestroyFormattedString().
  */
-const char* CHIPC_FormatString(const char* fmt, ...);
+const char* CHIPC_CreateFormattedString(const char* fmt, ...);
 
 /**
  * Destroys a formatted string.

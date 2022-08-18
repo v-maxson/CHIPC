@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 // FIXME Multiple calls to snprintf might not be optimal.
-const char* CHIPC_FormatString(const char* fmt, ...) {
+const char* CHIPC_CreateFormattedString(const char* fmt, ...) {
     va_list varargs;
     va_start(varargs, fmt);
 
