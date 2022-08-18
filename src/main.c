@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
         // Run the CHIP-8 Cpu with the selected ROM.
         CHIPC_Cpu cpu = CHIPC_CreateCpu();
         CHIPC_RunCpu(&cpu, rom_path, 500);
-
+        CHIPC_DestroyCpu(&cpu);
         NFD_FreePath(rom_path);
     } else if (dialog_result == NFD_CANCEL) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Warning", "User cancelled file dialog, aborting...", NULL);
