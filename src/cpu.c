@@ -1,9 +1,12 @@
 #include "cpu.h"
-#include "utility/utility.h"
+#include "instruction.h"
+#include "utility.h"
+#include "instruction_functions.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL.h>
+#include <sodium.h>
 
 #define CHIPC_WINDOW_SCALE 16
 #define CHIPC_WINDOW_WIDTH_SCALED CHIPC_WINDOW_WIDTH * CHIPC_WINDOW_SCALE
@@ -40,7 +43,7 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
         return;
     }
     // Copy the contents into memory.
-    fread_s(&cpu->memory[511], CHIPC_MEMORY_SIZE - 511, 1, CHIPC_MEMORY_SIZE - 1, rom);
+    fread_s(&cpu->memory[CHIPC_PC_START], CHIPC_MEMORY_SIZE - CHIPC_PC_START, 1, CHIPC_MEMORY_SIZE - 1, rom);
 
     // Close the ROM file.
     fclose(rom);
@@ -118,12 +121,27 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
                 running = false;
         }
 
-        // TODO Execute CPU Instructions
+        // TODO Possibly add debug menu using CImGui?
+
+        // Decode current instruction in memory.
+        CHIPC_Instruction ins = CHIPC_CreateInstructionFromPair(
+                cpu->memory[cpu->pc],
+                cpu->memory[cpu->pc + 1]
+                );
+
+        // Execute the instruction.
+        CHIPC_InstructionFunction ins_func = CHIPC_FetchInstruction(ins);
+        if (ins_func) ins_func(cpu, ins);
+
+        // Increment the PC.
+        cpu->pc += 2;
 
         // FIXME Render at 30-60 FPS rather than each loop iteration.
         SDL_UpdateTexture(texture, &CHIPC_WINDOW_RECT, cpu->display_memory, CHIPC_WINDOW_WIDTH * sizeof(uint32_t));
         SDL_RenderCopy(renderer, texture, &CHIPC_WINDOW_RECT, &CHIPC_WINDOW_RECT);
         SDL_RenderPresent(renderer);
+
+        // TODO Implement Delay/Sound timer.
 
         // Limit Clock speed.
         if ((1000 / clock_speed) > SDL_GetTicks64() - starting_tick) {
