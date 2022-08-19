@@ -3,8 +3,12 @@
 #include <nfd.h>
 #include <SDL.h>
 
+#define SDL_INIT_FLAGS  SDL_INIT_VIDEO   \
+                        | SDL_INIT_AUDIO \
+                        | SDL_INIT_TIMER
+
 int main(int argc, char* argv[]) {
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
+    if (SDL_Init(SDL_INIT_FLAGS) != 0) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Could not initialize SDL subsystems.", NULL);
         return 1;
     }
