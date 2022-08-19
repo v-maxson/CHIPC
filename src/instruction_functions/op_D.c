@@ -11,7 +11,8 @@ void CHIPC_OpD(CHIPC_Cpu* cpu, CHIPC_Instruction ins) {
         for (uint8_t col = 0; col < 8; col++) {
             uint8_t s_pixel = s_byte & (0x80u >> col);
             uint32_t* display_pixel = &cpu->display_memory[
-                    ((cpu->v[ins.y] % CHIPC_WINDOW_HEIGHT) + row) * CHIPC_WINDOW_WIDTH + ((cpu->v[ins.x] % CHIPC_WINDOW_WIDTH) + col)];
+                    ((cpu->v[ins.y] % CHIPC_WINDOW_HEIGHT) + row) * CHIPC_WINDOW_WIDTH
+                    + ((cpu->v[ins.x] % CHIPC_WINDOW_WIDTH) + col)];
 
             if (s_pixel) {
                 // If display_pixel is also on, set collision flag.
