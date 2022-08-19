@@ -59,7 +59,7 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
                 "An error occurred whilst initializing window: %s",
                 SDL_GetError()
                 );
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", error_message, NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", error_message, NULL);
         CHIPC_DestroyFormattedString(error_message);
         return;
     }
@@ -76,7 +76,7 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
                 "An error occurred whilst initializing renderer: %s",
                 SDL_GetError()
                 );
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", error_message, NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", error_message, NULL);
         CHIPC_DestroyFormattedString(error_message);
         return;
     }
@@ -94,7 +94,7 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
                 "An error occurred whilst initializing texture: %s",
                 SDL_GetError()
         );
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", error_message, NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", error_message, NULL);
         CHIPC_DestroyFormattedString(error_message);
         return;
     }
