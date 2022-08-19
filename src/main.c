@@ -2,6 +2,7 @@
 #include "utility.h"
 #include <nfd.h>
 #include <SDL.h>
+#include <sodium.h>
 
 #define SDL_INIT_FLAGS  SDL_INIT_VIDEO   \
                         | SDL_INIT_AUDIO \
@@ -15,6 +16,11 @@ int main(int argc, char* argv[]) {
 
     if (NFD_Init() != NFD_OKAY) {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Could not initialize NFD subsystems.", NULL);
+        return 1;
+    }
+
+    if (sodium_init() < 0) {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Could not initialize libsodium subsystems.", NULL);
         return 1;
     }
 
