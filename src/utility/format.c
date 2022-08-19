@@ -16,6 +16,7 @@ const char* CHIPC_CreateFormattedString(const char* fmt, ...) {
 
     uint64_t amount_written = vsnprintf(str, amount_needed + 1, fmt, varargs);
 
+    // This should be impossible, but should be checked for anyway.
     if (amount_written > amount_needed)
         return NULL;
 
