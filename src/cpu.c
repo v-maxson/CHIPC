@@ -109,7 +109,6 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
 
     uint64_t starting_tick;
     bool running = true;
-    int i = 0;
     while (running) {
         starting_tick = SDL_GetTicks64();
 
