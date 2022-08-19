@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
     if (dialog_result == NFD_OKAY) {
         // Run the CHIP-8 Cpu with the selected ROM.
         CHIPC_Cpu cpu = CHIPC_CreateCpu();
+        // TODO Allow user selectable clock_speed (text box input?).
         CHIPC_RunCpu(&cpu, rom_path, 500);
         CHIPC_DestroyCpu(&cpu);
         NFD_FreePath(rom_path);
