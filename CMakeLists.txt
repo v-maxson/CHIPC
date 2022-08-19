@@ -15,6 +15,14 @@ add_subdirectory(./dependencies/SDL2)
 #---- NFDE
 add_subdirectory(./dependencies/NFDE)
 
+#---- libsodium
+set(SODIUM_DISABLE_TESTS ON)
+add_subdirectory(./dependencies/libsodium)
+include_directories(
+        PUBLIC ./dependencies/libsodium/libsodium/src/libsodium/include
+        PRIVATE ./dependencies/libsodium/libsodium/src/libsodium/include/sodium
+)
+
 #---- Compilation
 file(GLOB_RECURSE PROJECT_SOURCE_FILES ./src/*.c ./src/*.h)
 add_executable(${PROJECT_NAME} WIN32 ${PROJECT_SOURCE_FILES})
@@ -23,4 +31,4 @@ add_executable(${PROJECT_NAME} WIN32 ${PROJECT_SOURCE_FILES})
 add_subdirectory(tests)
 
 #---- Linking
-target_link_libraries(${PROJECT_NAME} SDL2main SDL2-static nfd)
+target_link_libraries(${PROJECT_NAME} SDL2main SDL2-static nfd sodium)
