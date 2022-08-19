@@ -1,4 +1,4 @@
-#include "utility/utility.h"
+#include "utility.h"
 #include <stdio.h>
 
 int main(void) {

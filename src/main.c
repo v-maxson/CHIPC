@@ -1,5 +1,5 @@
 #include "cpu.h"
-#include "utility/utility.h"
+#include "utility.h"
 #include <nfd.h>
 #include <SDL.h>
 
