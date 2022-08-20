@@ -15,7 +15,7 @@
 #define CHIPC_WINDOW_WIDTH_SCALED CHIPC_WINDOW_WIDTH * CHIPC_WINDOW_SCALE
 #define CHIPC_WINDOW_HEIGHT_SCALED CHIPC_WINDOW_HEIGHT * CHIPC_WINDOW_SCALE
 #define CHIPC_WINDOW_DIMENSIONS_SCALED CHIPC_WINDOW_DIMENSIONS * CHIPC_WINDOW_SCALE
-#define CHIPC_WINDOW_RECT (SDL_Rect) { \
+#define CHIPC_WINDOW_RECT (SDL_Rect) {                                         \
                                         .w = CHIPC_WINDOW_WIDTH_SCALED,        \
                                         .h = CHIPC_WINDOW_HEIGHT_SCALED,       \
                                         .x = 0,                                \
