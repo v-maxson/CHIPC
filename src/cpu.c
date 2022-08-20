@@ -26,7 +26,7 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
     uint64_t rom_size = CHIPC_GetFileSize(rom_path, NULL);
     if (rom_size > CHIPC_MEMORY_SIZE - CHIPC_PC_START) {
         const char* error_msg = CHIPC_CreateFormattedString(
-                "ROM File must be less than (or equal to) %d bytes in size. Selected ROM is %llu bytes in size.",
+                "ROM must be less than (or equal to) %d bytes in size. Selected ROM is %llu bytes in size.",
                 CHIPC_MEMORY_SIZE - CHIPC_PC_START, rom_size);
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", error_msg, NULL);
         CHIPC_DestroyFormattedString(error_msg);
