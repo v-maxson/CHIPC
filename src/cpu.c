@@ -8,17 +8,6 @@
 #include <SDL.h>
 #include <sodium.h>
 
-#define CHIPC_WINDOW_SCALE 16
-#define CHIPC_WINDOW_WIDTH_SCALED CHIPC_WINDOW_WIDTH * CHIPC_WINDOW_SCALE
-#define CHIPC_WINDOW_HEIGHT_SCALED CHIPC_WINDOW_HEIGHT * CHIPC_WINDOW_SCALE
-#define CHIPC_WINDOW_DIMENSIONS_SCALED CHIPC_WINDOW_DIMENSIONS * CHIPC_WINDOW_SCALE
-#define CHIPC_WINDOW_RECT (SDL_Rect) { \
-                                        .w = CHIPC_WINDOW_WIDTH_SCALED,        \
-                                        .h = CHIPC_WINDOW_HEIGHT_SCALED,       \
-                                        .x = 0,                                \
-                                        .y = 0                                 \
-                                     }
-
 CHIPC_Cpu CHIPC_CreateCpu(void) {
     CHIPC_Cpu cpu = {0};
 
