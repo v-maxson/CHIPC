@@ -22,6 +22,17 @@ void CHIPC_DestroyCpu(CHIPC_Cpu *cpu) {
 }
 
 void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
+    // Check the size of the provided ROM.
+    uint64_t rom_size = CHIPC_GetFileSize(rom_path, NULL);
+    if (rom_size > CHIPC_MEMORY_SIZE - CHIPC_PC_START) {
+        const char* error_msg = CHIPC_CreateFormattedString(
+                "ROM File must be less than (or equal to) %d bytes in size. Selected ROM is %llu bytes in size.",
+                CHIPC_MEMORY_SIZE - CHIPC_PC_START, rom_size);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", error_msg, NULL);
+        CHIPC_DestroyFormattedString(error_msg);
+        return;
+    }
+
     // Open the provided ROM.
     FILE* rom = NULL;
     fopen_s(&rom, rom_path, "rb");
@@ -31,8 +42,9 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
         CHIPC_DestroyFormattedString(error_msg);
         return;
     }
+
     // Copy the contents into memory.
-    fread_s(&cpu->memory[CHIPC_PC_START], CHIPC_MEMORY_SIZE - CHIPC_PC_START, 1, CHIPC_MEMORY_SIZE - 1, rom);
+    fread_s(&cpu->memory[CHIPC_PC_START], CHIPC_MEMORY_SIZE - CHIPC_PC_START, 1, CHIPC_MEMORY_SIZE - CHIPC_PC_START, rom);
 
     // Close the ROM file.
     fclose(rom);
