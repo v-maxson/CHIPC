@@ -10,17 +10,17 @@
 
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_FLAGS) != 0) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Could not initialize SDL subsystems.", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", "Could not initialize SDL subsystems.", NULL);
         return 1;
     }
 
     if (NFD_Init() != NFD_OKAY) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Could not initialize NFD subsystems.", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", "Could not initialize NFD subsystems.", NULL);
         return 1;
     }
 
     if (sodium_init() < 0) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", "Could not initialize libsodium subsystems.", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", "Could not initialize libsodium subsystems.", NULL);
         return 1;
     }
 
@@ -33,13 +33,13 @@ int main(int argc, char* argv[]) {
         // Run the CHIP-8 Cpu with the selected ROM.
         CHIPC_Cpu cpu = CHIPC_CreateCpu();
         // TODO Allow user selectable clock_speed (text box input?).
-        CHIPC_RunCpu(&cpu, rom_path, 500);
+        CHIPC_RunCpu(&cpu, rom_path, 200);
         CHIPC_DestroyCpu(&cpu);
         NFD_FreePath(rom_path);
     } else if (dialog_result == NFD_CANCEL) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Warning", "User cancelled file dialog, aborting...", NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Warning!", "User cancelled file dialog, aborting...", NULL);
     } else {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", NFD_GetError(), NULL);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", NFD_GetError(), NULL);
     }
 
     NFD_Quit();
