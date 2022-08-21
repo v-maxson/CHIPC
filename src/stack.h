@@ -36,28 +36,28 @@ void CHIPC_DestroyStack(CHIPC_Stack* stack);
  * @param stack The CHIPC_Stack to check.
  * @return True if the provided CHIPC_Stack is full.
  */
-inline bool CHIPC_StackIsFull(const CHIPC_Stack* stack);
+bool CHIPC_StackIsFull(const CHIPC_Stack* stack);
 
 /**
  * Determines if the provided CHIPC_Stack is empty.
  * @param stack The CHIPC_Stack to check.
  * @return True if the provided CHIPC_Stack is empty.
  */
-inline bool CHIPC_StackIsEmpty(const CHIPC_Stack* stack);
+bool CHIPC_StackIsEmpty(const CHIPC_Stack* stack);
 
 /**
  * Retrieves the full capacity of the provided CHIPC_Stack.
  * @param stack The CHIPC_Stack to check.
  * @return The capacity of the provided CHIPC_Stack.
  */
-inline int64_t CHIPC_StackCapacity(const CHIPC_Stack* stack);
+int64_t CHIPC_StackCapacity(const CHIPC_Stack* stack);
 
 /**
  * Retrieves the amount of elements currently in use by the provided CHIPC_Stack.
  * @param stack The CHIPC_Stack to check.
  * @return The amount of elements currently in use by the provided CHIPC_Stack.
  */
-inline int64_t CHIPC_StackCurrentSize(const CHIPC_Stack* stack);
+int64_t CHIPC_StackCurrentSize(const CHIPC_Stack* stack);
 
 /**
  * Push a value onto the provided CHIPC_Stack.
