@@ -34,8 +34,7 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
     }
 
     // Open the provided ROM.
-    FILE* rom = NULL;
-    fopen_s(&rom, rom_path, "rb");
+    FILE* rom = fopen(rom_path, "rb");
     if (!rom) {
         const char* error_msg = CHIPC_CreateFormattedString("Could not open ROM: %s", rom_path);
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", error_msg, NULL);
@@ -44,7 +43,8 @@ void CHIPC_RunCpu(CHIPC_Cpu *cpu, const char *rom_path, uint64_t clock_speed) {
     }
 
     // Copy the contents into memory.
-    fread_s(&cpu->memory[CHIPC_PC_START], CHIPC_MEMORY_SIZE - CHIPC_PC_START, 1, CHIPC_MEMORY_SIZE - CHIPC_PC_START, rom);
+    // fread_s(&cpu->memory[CHIPC_PC_START], CHIPC_MEMORY_SIZE - CHIPC_PC_START, 1, CHIPC_MEMORY_SIZE - CHIPC_PC_START, rom);
+    fread(&cpu->memory[CHIPC_PC_START], 1, CHIPC_MEMORY_SIZE - CHIPC_PC_START, rom);
 
     // Close the ROM file.
     fclose(rom);
