@@ -9,6 +9,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
 #---- SDL2
+set(SDL_SHARED OFF)
 add_subdirectory(./dependencies/SDL2)
 
 #---- NFDE
