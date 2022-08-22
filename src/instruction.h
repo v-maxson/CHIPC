@@ -6,6 +6,9 @@
 /**
  * The CHIP-8 instruction data structure.
  */
+// I am well aware that this is technically undefined behavior.
+// However, I am unaware of a compiler that this particular instance
+// *doesn't* work with.
 typedef struct CHIPC_Instruction {
     union {
         uint16_t full;
