@@ -9,22 +9,14 @@
                         | SDL_INIT_TIMER
 
 int main(int argc, char* argv[]) {
-    if (SDL_Init(SDL_INIT_FLAGS) != 0) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", "Could not initialize SDL subsystems.", NULL);
+    if (SDL_Init(SDL_INIT_FLAGS) != 0
+        || NFD_Init() != NFD_OKAY
+        || sodium_init() < 0) {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", "Initialization Failed...", NULL);
         return 1;
     }
 
-    if (NFD_Init() != NFD_OKAY) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", "Could not initialize NFD subsystems.", NULL);
-        return 1;
-    }
-
-    if (sodium_init() < 0) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!", "Could not initialize libsodium subsystems.", NULL);
-        return 1;
-    }
-
-
+    // TODO If ROM path is passed as an argument, use that instead of opening file dialog.
     nfdchar_t* rom_path;
     nfdfilteritem_t filters[1] = { {"CHIP-8 ROM", "rom,ch8"} };
     nfdresult_t dialog_result = NFD_OpenDialog(&rom_path, filters, 1, NULL);
